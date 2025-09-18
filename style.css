@@ -37,6 +37,10 @@ input[type="text"]:focus {
     box-shadow: 0 0 5px rgba(66, 139, 202, 0.6);
 }
 
+input[type="text"].input-erro {
+    border: 1px solid red;
+}
+
 h1 {
     color: #428BCA;
     text-align: center;

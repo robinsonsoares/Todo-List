@@ -11,49 +11,65 @@ function adicionarTarefaEnter(e) {
     }
 }
 
-function validaNovaTarefa(texto){
-    
-    let erro = false 
-
-    if (texto == "") {        
-        exibeMensagemErro(mensagem,"Digite uma tarefa antes de adicionar!")
-        erro = true 
-    } else if(validaSeExistNovaTarefa(texto)){        
-        exibeMensagemErro(mensagem,"Já existe uma tarefa com essa descrição")        
-        erro = true 
-    }
-    
-    if (erro){
-        inputTarefa.style.border = '1px solid red'
-    }
-
-    return !erro ? false : true
-
-}
-
-function validaSeExistNovaTarefa(texto)
-{
-    let values     = JSON.parse(localStorage.getItem("tarefas") || "[]")
-    let exists     = values.find(x => x.texto == texto)
-    return !exists ? false : true
-}
-
 function adicionarTarefa() {
     const inputTarefa = document.getElementById("inputTarefa")
     const textoTarefa = inputTarefa.value.trim()
-    const mensagem = document.getElementById("mensagem")
-        
-    if (validaNovaTarefa(textoTarefa)) return 
+    const mensagemElemento = document.getElementById("mensagem")
+
+    const resultadoValidacao = validaNovaTarefa(textoTarefa)
+
+    if (!resultadoValidacao.valido) {
+        inputTarefa.classList.add('input-erro');
+        exibeMensagemErro(mensagemElemento, resultadoValidacao.mensagem)
+        return
+    }
 
     salvarTarefa(textoTarefa)
     
-    exibeMensagemSucesso(mensagem,"Tarefa adicionada com sucesso!") 
+    exibeMensagemSucesso(mensagemElemento,"Tarefa adicionada com sucesso!") 
     inputTarefa.value = ""   
     inputTarefa.style.border = ""
-
+    inputTarefa.classList.remove("input-erro")
+    
     document.querySelector('input[name="filtro"][value="todas"]').checked = true;
+    
     mostrarTarefas()
 
+}
+
+function validaNovaTarefa(texto){
+       
+    if (texto == "") {        
+        return {
+            valido: false,
+            mensagem: "Digite uma tarefa antes de adicionar!"
+        }
+        
+    }
+
+    const tarefasExistentes = leDoLocalStorage()
+    const existeTarefa = tarefasExistentes.find(tarefa => tarefa.texto === texto)
+
+    if (existeTarefa) {
+        return {
+            valido: false,
+            mensagem: "Já existe uma tarefa com essa descrição"
+        }
+    }
+
+    return {
+        valido: true
+    } 
+
+}
+
+function salvarNoLocalStorage(valor) {    
+    localStorage.setItem("tarefas",JSON.stringify(valor))
+}
+
+function leDoLocalStorage() {    
+    const minhasTarefas = localStorage.getItem("tarefas")      
+    return minhasTarefas ? JSON.parse(minhasTarefas) : []
 }
 
 function salvarTarefa(texto){
@@ -112,16 +128,6 @@ function mostrarTarefas(listaTarefas = tarefas){
     }
 
 }
-
-function salvarNoLocalStorage(valor) {    
-    localStorage.setItem("tarefas",JSON.stringify(valor))
-}
-
-function leDoLocalStorage() {    
-    const minhasTarefas = localStorage.getItem("tarefas")       
-    return minhasTarefas ? JSON.parse(minhasTarefas) : []
-}
-
 
 function mudarStatusTarefa(tarefa){
     const index = tarefas.findIndex(x => x.texto === tarefa.texto )
