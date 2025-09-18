@@ -39,6 +39,7 @@ input[type="text"]:focus {
 
 h1 {
     color: #428BCA;
+    text-align: center;
 }
 
 button {
@@ -140,4 +141,13 @@ li:hover {
     color: #306aa8;             
 }
 
+.mensagem {    
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; 
+    text-align: center;
+}
+
+.mensagem.ocultar {    
+    opacity: 0;
+}
 

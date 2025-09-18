@@ -11,12 +11,30 @@ function adicionarTarefaEnter(e) {
     }
 }
 
-function validateIfExistsNewTask()
+function validaNovaTarefa(texto){
+    
+    let erro = false 
+
+    if (texto == "") {        
+        exibeMensagemErro(mensagem,"Digite uma tarefa antes de adicionar!")
+        erro = true 
+    } else if(validaSeExistNovaTarefa(texto)){        
+        exibeMensagemErro(mensagem,"Já existe uma tarefa com essa descrição")        
+        erro = true 
+    }
+    
+    if (erro){
+        inputTarefa.style.border = '1px solid red'
+    }
+
+    return !erro ? false : true
+
+}
+
+function validaSeExistNovaTarefa(texto)
 {
     let values     = JSON.parse(localStorage.getItem("tarefas") || "[]")
-    const inputTarefa = document.getElementById("inputTarefa")
-    const textoTarefa = inputTarefa.value.trim()
-    let exists     = values.find(x => x.texto == textoTarefa)
+    let exists     = values.find(x => x.texto == texto)
     return !exists ? false : true
 }
 
@@ -25,24 +43,15 @@ function adicionarTarefa() {
     const textoTarefa = inputTarefa.value.trim()
     const mensagem = document.getElementById("mensagem")
         
-    if (textoTarefa == "") {
-        inputTarefa.style.border = '1px solid red'
-        exibeMensagemErro(mensagem,"Digite uma tarefa antes de adicionar!")
-        return
-    }
+    if (validaNovaTarefa(textoTarefa)) return 
 
-    if(validateIfExistsNewTask()){
-        inputTarefa.style.border = '1px solid red'
-        exibeMensagemErro(mensagem,"Já existe uma tarefa com essa descrição")
-        inputTarefa.value = ""  
-        return        
-    }
     salvarTarefa(textoTarefa)
     
     exibeMensagemSucesso(mensagem,"Tarefa adicionada com sucesso!") 
     inputTarefa.value = ""   
     inputTarefa.style.border = ""
 
+    document.querySelector('input[name="filtro"][value="todas"]').checked = true;
     mostrarTarefas()
 
 }
@@ -151,9 +160,7 @@ function filtra(tipo){
         const mostrarTarefasConcluidas = tipo == "concluidas"    
         tarefasParaMostrar  = todasTarefas.filter(tarefa => tarefa.concluida == mostrarTarefasConcluidas)    
     }
-
-    // limpaMensagem(mensagem,"")
-
+    
     mostrarTarefas(tarefasParaMostrar)
     
 }
@@ -162,16 +169,29 @@ function exibeMensagemErro(elemento, texto){
     elemento.classList.remove("sucesso")
     elemento.classList.add("erro")
     elemento.textContent = texto
+
+    limpaMensagem(elemento)
+
 }
 
 function exibeMensagemSucesso(elemento, texto){
     elemento.classList.remove("erro")
     elemento.classList.add("sucesso")
     elemento.textContent = texto
+
+    limpaMensagem(elemento)
+
 }
 
-function limpaMensagem(elemento, texto){    
-    elemento.textContent = texto
+function limpaMensagem(elemento){        
+    setTimeout(() => {
+        elemento.classList.add("ocultar")
+    }, 4000) 
+        
+    setTimeout(() => {
+        elemento.textContent = ''
+        elemento.classList.remove('sucesso', 'erro', 'ocultar')
+    }, 4500) // 3.5 segundos (3s do timeout + 0.5s da transição)    
 }
 
 window.onload = () => {
