@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tarefas</h1>
+        <div class="tarefa">
+            <input type="text" id="inputTarefa" name="inputTarefa" placeholder="Digite a sua nova tarefa" onkeydown="adicionarTarefaEnter(event)">
+            <button onclick="adicionarTarefa()">Adicionar</button>
+            <p id="mensagem"></p>
+        </div>      
+            <form class="filtros">            
+                <input type="radio" id="todas" name="filtro" value="todas" checked onclick="filtra('todas')">
+                <label for="todas">Todas</label>
+
+                <input type="radio" id="pendentes" name="filtro" value="pendentes" onclick="filtra('pendentes')">
+                <label for="pendentes">Pendentes</label>
+
+                <input type="radio" id="concluidas" name="filtro" value="concluidas" onclick="filtra('concluidas')">
+                <label for="concluidas">Concluídas</label>       
+            </form> 
+        <ul id="listaTarefa"></ul>
+    </div>    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    /*background-color: #331F19; */
+    background-color: #428BCA; /* #78c1f3; */
+    
+}
+.container {
+    text-align: center;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #dcdef1;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;    
+    
+}
+
+input[type="text"] {
+    width: 20rem;
+    border-radius: 1rem;
+    border: 2px solid #428BCA;
+    padding: 0.5rem 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #306aa8;       
+    box-shadow: 0 0 5px rgba(66, 139, 202, 0.6);
+}
+
+h1 {
+    color: #428BCA;
+}
+
+button {
+    background-color: #428BCA;
+    color: #FFF;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    padding-bottom: 5px;
+    color: #2a5d9f;       
+    font-weight: 600;     
+    font-size: 1.05rem;   
+    letter-spacing: 0.3px;
+}
+
+li:hover {
+    background: #faf9f9;
+}
+
+.sucesso {
+   color: #428BCA;  
+   font-weight: 600;  
+}
+
+.erro {
+    color: #ec0d0d;   
+    font-weight: 600;  
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.acoes {
+    display: flex;
+    gap: 5px;
+}
+
+.concluida {
+    color: #b3aeae;
+    text-decoration: line-through;
+}
+
+.filtros {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtros input[type="radio"] {
+    appearance: none;         
+    -webkit-appearance: none; 
+    width: 18px;
+    height: 18px;
+    border: 2px solid #428BCA;   
+    border-radius: 50%;          
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.filtros input[type="radio"]:checked {
+    background-color: #428BCA;   
+    border-color: #428BCA;
+}
+
+.filtros input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.filtros label {
+    margin-left: 0.4rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    color: #428BCA;             
+    font-weight: bold;
+}
+
+.filtros label:hover {
+    color: #306aa8;             
+}
+
+
