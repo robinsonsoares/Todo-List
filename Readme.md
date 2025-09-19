@@ -23,6 +23,6 @@ Este é um projeto simples e elegante de uma lista de tarefas (To-Do List) const
 
 1.  Clone este repositório para a sua máquina:
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+    git clone [https://github.com/robinsonsoares/Todo-List](https://github.com/robinsonsoares/Todo-List)
     ```
 2.  Abra o arquivo `index.html` em seu navegador de internet.
