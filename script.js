@@ -34,7 +34,7 @@ function adicionarTarefa() {
     document.querySelector('input[name="filtro"][value="todas"]').checked = true;
     
     mostrarTarefas()
-
+    estadoBotaoLimpar()
 }
 
 function validaNovaTarefa(texto){
@@ -105,6 +105,7 @@ function mostrarTarefas(listaTarefas = tarefas){
         div.className = "acoes"
 
         const botaoMarcaTarefa = document.createElement("button")
+        botaoMarcaTarefa.className = "btn-lista"
         botaoMarcaTarefa.textContent = tarefa.concluida?"Desmarcar":"Marcar"
       
         botaoMarcaTarefa.addEventListener("click", () => {
@@ -112,6 +113,7 @@ function mostrarTarefas(listaTarefas = tarefas){
         })
 
         const botaoApagaTarefa = document.createElement("button")
+        botaoApagaTarefa.className = "btn-lista"
         botaoApagaTarefa.textContent = "Apagar"
         
         botaoApagaTarefa.addEventListener("click", () => {
@@ -152,7 +154,8 @@ function apagarTarefa(tarefa) {
         exibeMensagemSucesso(mensagem,"Tarefa alterada com sucesso!") 
 
         const radioAtual = document.querySelector('input[name="filtro"]:checked').value
-        filtra(radioAtual)         
+        filtra(radioAtual)  
+        estadoBotaoLimpar()       
     }
 }
 
@@ -192,15 +195,34 @@ function exibeMensagemSucesso(elemento, texto){
 function limpaMensagem(elemento){        
     setTimeout(() => {
         elemento.classList.add("ocultar")
-    }, 4000) 
+    }, 3000) 
         
     setTimeout(() => {
         elemento.textContent = ''
         elemento.classList.remove('sucesso', 'erro', 'ocultar')
-    }, 4500) // 3.5 segundos (3s do timeout + 0.5s da transição)    
+    }, 3500) 
+}
+
+function limparTarefas() {
+    tarefas = []
+    salvarNoLocalStorage(tarefas)
+
+    const mensagemElemento = document.getElementById("mensagem")
+    exibeMensagemSucesso(mensagemElemento, "Todas as tarefas foram removidas!")
+
+    mostrarTarefas()
+    estadoBotaoLimpar()
+
+}
+
+function estadoBotaoLimpar() {
+    const botaoLimpar = document.getElementById("btnLimpar")
+    botaoLimpar.disabled = tarefas.length === 0
+
 }
 
 window.onload = () => {
     carregarTarefas()
-    filtra('todas') 
+    estadoBotaoLimpar()
+    filtra('todas')     
 }

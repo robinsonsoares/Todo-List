@@ -9,11 +9,16 @@
 <body>
     <div class="container">
         <h1>Lista de Tarefas</h1>
-        <div class="tarefa">
-            <input type="text" id="inputTarefa" name="inputTarefa" placeholder="Digite a sua nova tarefa" onkeydown="adicionarTarefaEnter(event)">
-            <button onclick="adicionarTarefa()">Adicionar</button>
-            <p id="mensagem"></p>
-        </div>      
+            <div class="tarefa">
+                <input type="text" id="inputTarefa" name="inputTarefa" placeholder="Digite a sua nova tarefa" onkeydown="adicionarTarefaEnter(event)">
+
+                <div class="container-botoes">
+                    <button id="btnAdicionar" class="btn btn-adicionar" onclick="adicionarTarefa()">Adicionar</button>
+                    <button id="btnLimpar" class="btn btn-limpar" onclick="limparTarefas()">Limpar Tarefas</button>
+                </div>
+                
+                <p id="mensagem"></p>
+            </div>   
             <form class="filtros">            
                 <input type="radio" id="todas" name="filtro" value="todas" checked onclick="filtra('todas')">
                 <label for="todas">Todas</label>
