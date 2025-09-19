@@ -1,4 +1,4 @@
-# Gerenciador de Tarefas 📋
+# Lista Tarefa - To-do 📋
 
 Este é um projeto simples e elegante de uma lista de tarefas (To-Do List) construída com HTML, CSS e JavaScript puro. A aplicação permite que você organize suas atividades diárias de forma prática e intuitiva, com todos os dados salvos diretamente no seu navegador.
 
