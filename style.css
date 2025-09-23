@@ -79,12 +79,28 @@ input[type="text"].input-erro {
 .btn-limpar {
     width: 150px;
     background-color: firebrick;
-    color: white;
+    color: white;    
 }
 
 .btn-limpar:hover {
     background-color: #8B0000;
     transform: scale(1.05);
+}
+
+.btn-limpar:disabled {
+    /* Mudar a cor de fundo para cinza */
+    background-color: #a0a0a0; 
+    
+    /* Mudar o cursor para indicar que não pode ser clicado */
+    cursor: not-allowed;
+    
+    /* Desliga o efeito de escala do hover */
+    transform: none; 
+}
+
+.btn-limpar:disabled:hover {
+    /* Garante que a cor cinza permaneça no hover */
+    background-color: #a0a0a0;
 }
 
 ul {
@@ -137,6 +153,8 @@ li:hover {
 }
 
 .mensagem {
+    min-height: 20px; /* Define uma altura mínima para a mensagem */
+    margin-bottom: 10px; /* Adiciona um espaçamento abaixo para separar da lista */
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     text-align: center;
