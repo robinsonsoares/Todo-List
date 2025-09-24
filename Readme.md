@@ -1,6 +1,8 @@
-# Lista Tarefa - To-do 📋
+# Desafio Técnico - Lista de Tarefas 📋
 
-Este é um projeto simples e elegante de uma lista de tarefas (To-Do List) construída com HTML, CSS e JavaScript puro. A aplicação permite que você organize suas atividades diárias de forma prática e intuitiva, com todos os dados salvos diretamente no seu navegador.
+Este projeto foi desenvolvido como parte de um **desafio técnico** proposto pela **Bluesoft Sistemas** para a vaga de **Analista de Suporte N3**.
+
+É uma aplicação de lista de tarefas (To-Do List) construída com **HTML, CSS e JavaScript puro**. A aplicação permite que você organize suas atividades diárias de forma prática e intuitiva, com todos os dados salvos diretamente no seu navegador.
 
 ## ✨ Funcionalidades
 
